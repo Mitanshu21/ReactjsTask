@@ -16,6 +16,28 @@ function Navbar({ loggedUser }) {
   const navigate = useNavigate();
   const store = useSelector((state) => state.cart);
 
+  const TypographyC = ({ onclickE, title }) => (
+    <Typography
+      variant="h6"
+      noWrap
+      component="a"
+      onClick={onclickE}
+      sx={{
+        mr: 4,
+        ml: 2,
+        display: { xs: "none", md: "flex" },
+        fontFamily: "monospace",
+        fontWeight: 700,
+        letterSpacing: ".3rem",
+        color: "inherit",
+        textDecoration: "none",
+        cursor: "pointer",
+      }}
+    >
+      {title}
+    </Typography>
+  );
+
   return (
     <>
       <AppBar position="static">
@@ -26,72 +48,30 @@ function Navbar({ loggedUser }) {
                 <GridViewIcon
                   sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                 />
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="a"
-                  onClick={() => navigate("/Dashboard")}
-                  sx={{
-                    mr: 4,
-                    ml: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Dashboard
-                </Typography>
+                <TypographyC
+                  onclickE={() => navigate("/Dashboard")}
+                  title={"Dashboard"}
+                />
 
                 <Badge badgeContent={store.totalQuantity} color="success">
                   <ShoppingCartIcon
                     sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                   />
                 </Badge>
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="a"
-                  onClick={() => navigate("/Cart")}
-                  sx={{
-                    mr: 4,
-                    ml: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Cart
-                </Typography>
+
+                <TypographyC
+                  onclickE={() => navigate("/Cart")}
+                  title={"Cart"}
+                />
 
                 <LogoutIcon
                   sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
                 />
-                <Typography
-                  variant="h6"
-                  noWrap
-                  component="a"
-                  onClick={() => dispatch(authLogout())}
-                  sx={{
-                    mr: 2,
-                    display: { xs: "none", md: "flex" },
-                    fontFamily: "monospace",
-                    fontWeight: 700,
-                    letterSpacing: ".3rem",
-                    color: "inherit",
-                    textDecoration: "none",
-                    cursor: "pointer",
-                  }}
-                >
-                  Logout
-                </Typography>
+
+                <TypographyC
+                  onclickE={() => dispatch(authLogout())}
+                  title={"Logout"}
+                />
               </>
             ) : (
               <>

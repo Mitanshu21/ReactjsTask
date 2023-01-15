@@ -3,8 +3,11 @@ import { products } from "../../products";
 import ProductItem from "./ProductItem";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
+  const store = useSelector((state) => state.cart.items);
+
   return (
     <>
       <Box sx={{ width: "100%", p: 10 }}>
@@ -12,7 +15,7 @@ const Dashboard = () => {
           {products.map((item) => (
             <React.Fragment key={item.title}>
               <Grid item>
-                <ProductItem item={item} />
+                <ProductItem item={item} store={store} />
               </Grid>
             </React.Fragment>
           ))}

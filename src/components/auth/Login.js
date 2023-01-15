@@ -49,7 +49,7 @@ export default function SignIn() {
             name="email"
             autoComplete="email"
             autoFocus
-            value="admin@gmail.com"
+            placeholder="admin@gmail.com"
           />
           <TextField
             margin="normal"
@@ -60,7 +60,7 @@ export default function SignIn() {
             type="password"
             id="password"
             autoComplete="current-password"
-            value="Abcd@1234"
+            placeholder="Abcd@1234"
           />
           <Button
             type="submit"

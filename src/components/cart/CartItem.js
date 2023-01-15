@@ -1,17 +1,13 @@
 import React from "react";
 import Card from "@mui/material/Card";
-import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 
 export default function CartItem({ item }) {
   return (
-    <Card>
-      <CardMedia image={item.image} title={item.title} />
+    <Card sx={{ mb: 2 }}>
       <CardContent>
-        <CardMedia image={item.image} title={item.title} />
         <Typography color="textSecondary" gutterBottom>
           {item.category}
         </Typography>
@@ -29,7 +25,7 @@ export default function CartItem({ item }) {
           </Grid>
           <Grid item xs={1} sm={1} md={1} lg={1}>
             <Typography variant="h6" component="div">
-              1
+              x{item.quantity}
             </Typography>
           </Grid>
           <Grid item xs={10} sm={9} md={10} lg={10}>

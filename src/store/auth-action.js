@@ -31,6 +31,7 @@ export const authLogin = (data) => {
       console.log("success");
     } catch (error) {
       console.log(error);
+      alert("Invalid Email or Password!");
     }
   };
 };

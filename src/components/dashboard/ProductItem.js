@@ -9,12 +9,18 @@ import Typography from "@mui/material/Typography";
 import { cartActions } from "../../store/cart-slice";
 import { useDispatch } from "react-redux";
 
-export default function ProductItem({ item }) {
+export default function ProductItem({ item, store }) {
   const dispatch = useDispatch();
 
   const addItemHandler = (item) => {
     dispatch(cartActions.addItemToCart(item));
   };
+
+  const removeItemHandler = (item) => {
+    dispatch(cartActions.removeItemFromCart(item));
+  };
+
+  let alreadyInCart = store.filter((t) => t.title === item.title);
 
   return (
     <Card sx={{ width: 345, height: 550, p: 3 }}>
@@ -26,9 +32,26 @@ export default function ProductItem({ item }) {
       </CardContent>
       <CardActions>
         <Box display="flex" justifyContent="center" alignItems="center">
-          <Button variant="outlined" onClick={() => addItemHandler(item)}>
-            Add to Cart
-          </Button>
+          {alreadyInCart?.length > 0 ? (
+            <>
+              <Button
+                variant="outlined"
+                onClick={() => removeItemHandler(item.id)}
+              >
+                -
+              </Button>
+              <Typography gutterBottom variant="h5" component="div">
+                {item.quantity}
+              </Typography>
+              <Button variant="outlined" onClick={() => addItemHandler(item)}>
+                +
+              </Button>
+            </>
+          ) : (
+            <Button variant="outlined" onClick={() => addItemHandler(item)}>
+              Add to Cart
+            </Button>
+          )}
         </Box>
       </CardActions>
     </Card>

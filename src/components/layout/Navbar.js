@@ -6,12 +6,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import Badge from "@mui/material/Badge";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import GridViewIcon from "@mui/icons-material/GridView";
 import LogoutIcon from "@mui/icons-material/Logout";
 import { useSelector, useDispatch } from "react-redux";
 import { authLogout } from "../../store/auth-action";
 
 function Navbar({ loggedUser }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const store = useSelector((state) => state.cart);
 
   return (
@@ -21,16 +23,14 @@ function Navbar({ loggedUser }) {
           <Toolbar disableGutters>
             {loggedUser ? (
               <>
-                <Badge badgeContent={store.totalQuantity} color="success">
-                  <ShoppingCartIcon
-                    sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-                  />
-                </Badge>
+                <GridViewIcon
+                  sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                />
                 <Typography
                   variant="h6"
                   noWrap
                   component="a"
-                  href="/Cart"
+                  onClick={() => navigate("/Dashboard")}
                   sx={{
                     mr: 4,
                     ml: 2,
@@ -40,6 +40,32 @@ function Navbar({ loggedUser }) {
                     letterSpacing: ".3rem",
                     color: "inherit",
                     textDecoration: "none",
+                    cursor: "pointer",
+                  }}
+                >
+                  Dashboard
+                </Typography>
+
+                <Badge badgeContent={store.totalQuantity} color="success">
+                  <ShoppingCartIcon
+                    sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+                  />
+                </Badge>
+                <Typography
+                  variant="h6"
+                  noWrap
+                  component="a"
+                  onClick={() => navigate("/Cart")}
+                  sx={{
+                    mr: 4,
+                    ml: 2,
+                    display: { xs: "none", md: "flex" },
+                    fontFamily: "monospace",
+                    fontWeight: 700,
+                    letterSpacing: ".3rem",
+                    color: "inherit",
+                    textDecoration: "none",
+                    cursor: "pointer",
                   }}
                 >
                   Cart
@@ -61,6 +87,7 @@ function Navbar({ loggedUser }) {
                     letterSpacing: ".3rem",
                     color: "inherit",
                     textDecoration: "none",
+                    cursor: "pointer",
                   }}
                 >
                   Logout
@@ -72,7 +99,6 @@ function Navbar({ loggedUser }) {
                   variant="h6"
                   noWrap
                   component="a"
-                  href="/"
                   sx={{
                     mr: 2,
                     display: { xs: "none", md: "flex" },
@@ -81,6 +107,7 @@ function Navbar({ loggedUser }) {
                     letterSpacing: ".3rem",
                     color: "inherit",
                     textDecoration: "none",
+                    cursor: "pointer",
                   }}
                 >
                   Login

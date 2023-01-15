@@ -8,6 +8,7 @@ import Login from "./components/auth/Login";
 import Dashboard from "./components/dashboard/Dashboard";
 import Navbar from "./components/layout/Navbar";
 import Cart from "./components/cart/Cart";
+import NotFound from "./components/NotFound";
 
 import { authCheck } from "./store/auth-action";
 import { useSelector, useDispatch } from "react-redux";
@@ -25,13 +26,14 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<Navbar loggedUser={loggedUser} />}>
-          {/* <Route element={<PublicRoute loggedUser={loggedUser} />}> */}
-          <Route path="/" element={<Login />} />
-          {/* </Route> */}
-          {/* <Route element={<PrivateRoute loggedUser={loggedUser} />}> */}
-          <Route path="/Dashboard" element={<Dashboard />} />
-          <Route path="/Cart" element={<Cart />} />
-          {/* </Route> */}
+          <Route element={<PublicRoute loggedUser={loggedUser} />}>
+            <Route path="/" element={<Login />} />
+          </Route>
+          <Route element={<PrivateRoute loggedUser={loggedUser} />}>
+            <Route path="/Dashboard" element={<Dashboard />} />
+            <Route path="/Cart" element={<Cart />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -40,9 +40,7 @@ export default function ProductItem({ item, store }) {
               >
                 -
               </Button>
-              <Typography gutterBottom variant="h5" component="div">
-                {item.quantity}
-              </Typography>
+              <Button variant="text">{alreadyInCart[0].quantity}</Button>
               <Button variant="outlined" onClick={() => addItemHandler(item)}>
                 +
               </Button>
